@@ -20,4 +20,8 @@
 package org.fossnova.mc;
 
 public enum Severity {
+    INFO,
+    WARNING,
+    ERROR,
+    CRITICAL
 }
