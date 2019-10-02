@@ -19,36 +19,5 @@
  */
 package org.fossnova.mc;
 
-public final class Problem {
-    private final Severity severity;
-    private final String message;
-    private final Throwable reason;
-
-    public Problem(final Severity severity, final Throwable reason) {
-        this(severity, null, reason);
-    }
-
-    public Problem(final Severity severity, final String message) {
-        this(severity, message, null);
-    }
-
-    public Problem(final Severity severity, final String message, final Throwable reason) {
-        if (severity == null) throw new NullPointerException();
-        if (message == null && reason == null) throw new NullPointerException();
-        this.severity = severity;
-        this.message = message;
-        this.reason = reason;
-    }
-
-    public Severity getSeverity() {
-        return severity;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public Throwable getReason() {
-        return reason;
-    }
+public enum Severity {
 }
