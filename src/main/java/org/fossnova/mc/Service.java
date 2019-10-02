@@ -20,4 +20,6 @@
 package org.fossnova.mc;
 
 public interface Service {
+    void start();
+    void stop();
 }
