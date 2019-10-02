@@ -19,7 +19,19 @@
  */
 package org.fossnova.mc;
 
-public interface ServiceContainer {
-    void newUpdateOperation(Listener<UpdateOperation> listener);
-    void newReadOperation(Listener<ReadOperation> listener);
+/**
+ * A completion listener for requested object or event.
+ *
+ * @param <R> completion result type
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
+public interface Listener<R> extends java.util.EventListener {
+
+    /**
+     * Completion notification for requested object or event.
+     *
+     * @param result completion result
+     */
+    void onComplete(R result);
 }
