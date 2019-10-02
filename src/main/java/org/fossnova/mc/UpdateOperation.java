@@ -20,4 +20,6 @@
 package org.fossnova.mc;
 
 public interface UpdateOperation extends ReadOperation {
+    ServiceBuilder addService();
+    void removeService(ServiceController controller);
 }

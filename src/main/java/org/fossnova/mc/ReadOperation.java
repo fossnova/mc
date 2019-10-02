@@ -20,4 +20,5 @@
 package org.fossnova.mc;
 
 public interface ReadOperation {
+    <V> void getValue(String name, Listener<V> listener);
 }
