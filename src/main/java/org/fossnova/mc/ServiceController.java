@@ -19,5 +19,5 @@
  */
 package org.fossnova.mc;
 
-public interface Controller {
+public interface ServiceController {
 }

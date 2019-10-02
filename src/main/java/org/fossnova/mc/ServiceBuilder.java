@@ -27,5 +27,5 @@ public interface ServiceBuilder {
     void setInstance(Service service);
     <T> Consumer<T> provides(String name, String... aliases);
     <T> Supplier<T> requires(String name, Flag flag);
-    Controller install();
+    ServiceController install();
 }
