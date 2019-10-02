@@ -19,7 +19,18 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Dependency flags.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public enum Flag {
+    /**
+     * A missing dependency will force update operation to rollback.
+     */
     CRITICAL,
+    /**
+     * A missing dependency will allow update operation to commit.
+     */
     UNCRITICAL
 }
