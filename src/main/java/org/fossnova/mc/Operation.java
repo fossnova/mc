@@ -46,6 +46,12 @@ public interface Operation {
     void addProblem(Problem problem);
 
     /**
+     * Returns operation problems report.
+     * @return operation problems report
+     */
+    OperationReport getProblems();
+
+    /**
      * Returns operation hold handle.
      * @return operation hold handle
      * @throws IllegalStateException if hold handle was requested for non active operation
