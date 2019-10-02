@@ -19,5 +19,29 @@
  */
 package org.fossnova.mc;
 
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public interface Operation {
+    /**
+     * Indicates whether this operation have been committed.
+     * @return {@code true} if operation have been committed, {@code false} otherwise
+     */
+    boolean isCommitted();
+
+    /**
+     * Returns how long is / was operation running.
+     * @param unit time unit
+     * @return how long is / was operation running
+     */
+    long getDuration(TimeUnit unit);
+
+    /**
+     * Returns operation hold handle.
+     * @return operation hold handle
+     * @throws IllegalStateException if hold handle was requested for non active operation
+     */
+    OperationHoldHandle holdOn();
 }
