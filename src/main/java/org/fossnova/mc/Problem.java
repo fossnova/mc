@@ -19,7 +19,5 @@
  */
 package org.fossnova.mc;
 
-public interface Service {
-    void start(Context ctx);
-    void stop(Context ctx);
+public final class Problem {
 }

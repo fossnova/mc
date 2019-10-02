@@ -19,7 +19,8 @@
  */
 package org.fossnova.mc;
 
-public interface Service {
-    void start(Context ctx);
-    void stop(Context ctx);
+public interface Context {
+    void complete();
+    void addProblem(Problem problem);
+    void asynchronous();
 }
