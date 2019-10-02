@@ -23,9 +23,9 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface ServiceBuilder {
-    void setMode(Mode mode);
-    void setInstance(Service service);
+    ServiceBuilder setMode(Mode mode);
+    ServiceBuilder setInstance(Service service);
     <T> Consumer<T> provides(String name, String... aliases);
     <T> Supplier<T> requires(String name, Flag flag);
-    ServiceController install();
+    void install();
 }

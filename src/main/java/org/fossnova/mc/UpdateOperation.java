@@ -21,5 +21,7 @@ package org.fossnova.mc;
 
 public interface UpdateOperation extends ReadOperation {
     ServiceBuilder addService();
+    ServiceBuilder addService(Listener<ServiceController> listener);
     void removeService(ServiceController controller);
+    void removeService(ServiceController controller, Listener<ServiceController> listener);
 }
