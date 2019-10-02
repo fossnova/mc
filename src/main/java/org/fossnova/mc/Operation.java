@@ -39,6 +39,13 @@ public interface Operation {
     long getDuration(TimeUnit unit);
 
     /**
+     * Adds problem description to this operation.
+     * @param problem problem description
+     * @throws IllegalStateException if problem is reported for non active operation
+     */
+    void addProblem(Problem problem);
+
+    /**
      * Returns operation hold handle.
      * @return operation hold handle
      * @throws IllegalStateException if hold handle was requested for non active operation
