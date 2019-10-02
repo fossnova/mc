@@ -19,6 +19,5 @@
  */
 package org.fossnova.mc;
 
-public interface ReadOperation extends Operation {
-    <V> void getValue(String name, Listener<V> listener);
+public interface Operation {
 }

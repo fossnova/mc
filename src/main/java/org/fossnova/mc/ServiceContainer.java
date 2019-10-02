@@ -22,11 +22,9 @@ package org.fossnova.mc;
 public interface ServiceContainer {
     void newUpdateOperation(Listener<UpdateOperation> listener);
     void newReadOperation(Listener<ReadOperation> listener);
-    boolean canCommit(ReadOperation readOp);
-    boolean canCommit(UpdateOperation updateOp);
-    void commit(ReadOperation readOp, Listener<ReadOperation> listener);
-    void commit(UpdateOperation updateOp, Listener<UpdateOperation> listener);
-    void prepare(ReadOperation readOp, Listener<ReadOperation> listener);
-    void prepare(UpdateOperation updateOp, Listener<UpdateOperation> listener);
-    void rollback(UpdateOperation updateOp, Listener<UpdateOperation> listener);
+    boolean owns(Operation operation);
+    boolean canCommit(Operation operation);
+    <O extends Operation> void commit(O operation, Listener<O> listener);
+    void prepare(UpdateOperation operation, Listener<UpdateOperation> listener);
+    void restart(UpdateOperation operation, Listener<UpdateOperation> listener);
 }
