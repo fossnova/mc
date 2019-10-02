@@ -20,4 +20,6 @@
 package org.fossnova.mc;
 
 public interface ServiceContainer {
+    void newUpdateOperation();
+    void newReadOperation();
 }
