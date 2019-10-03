@@ -19,8 +19,31 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Service modes.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public enum Mode {
+    /**
+     * Service starts as soon as all dependencies are satisfied.
+     * Will start even if there are no demandants
+     * and will stay running if all demandants are gone.
+     * Actively demands dependencies at install time.
+     */
     ACTIVE,
+    /**
+     * Service starts as soon as all dependencies
+     * are satisfied and service is demanded to start.
+     * Will stay running when all demandants are gone.
+     * Does not demand dependencies at install time.
+     */
     LAZY,
+    /**
+     * Service starts as soon as all dependencies
+     * are satisfied and service is demanded to start.
+     * Will stop when all demandants are gone.
+     * Does not demand dependencies at install time.
+     */
     ON_DEMAND
 }
