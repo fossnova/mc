@@ -19,6 +19,18 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Only read operations can directly access values from service container.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public interface ReadOperation extends Operation {
-    <V> void getValue(String name, Listener<V> listener);
+    /**
+     * Gets value from service container.
+     * @param name value name
+     * @param <V> value type
+     * @return associated value with given name, or <code>null</code> if not present
+     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
+     */
+    <V> V getValue(String name);
 }

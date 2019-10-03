@@ -22,6 +22,17 @@ package org.fossnova.mc;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * There are two types of operations:
+ *
+ * <UL>
+ *     <LI>{@link UpdateOperation} - modifying operation can modify internal {@link ServiceContainer} states</LI>
+ *     <LI>{@link ReadOperation} - read-only operations cannot modify internal {@link ServiceContainer} states</LI>
+ * </UL>
+ *
+ * Every <B>Operation</B> is associated with <B>ServiceContainer</B> that created it.
+ * At every point of time either single <B>UpdateOperation</B> is running
+ * or multiple <B>ReadOperation</B>s are executing concurrently against its container.
+ *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface Operation {

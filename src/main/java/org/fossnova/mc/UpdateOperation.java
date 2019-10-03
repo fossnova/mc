@@ -19,7 +19,12 @@
  */
 package org.fossnova.mc;
 
-public interface UpdateOperation extends ReadOperation {
+/**
+ * Update operations have to access values from service container via properly declared service dependencies.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
+public interface UpdateOperation extends Operation {
     ServiceBuilder addService();
     ServiceBuilder addService(Listener<ServiceController> listener);
     void removeService(ServiceController controller);
