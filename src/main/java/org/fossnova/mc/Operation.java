@@ -22,6 +22,7 @@ package org.fossnova.mc;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * Operations are the only access point to the service container.
  * There are two types of operations:
  *
  * <UL>
@@ -39,9 +40,9 @@ public interface Operation {
     /**
      * Register <I>post-commit</I> phase completion listener for notification.
      * @param listener completion listener
-     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     * @throws IllegalStateException if attempting to register completion listener for non active operation
      */
-    void addPostCommit(Action listener);
+    void addPostCommit(Listener<Context> listener);
 
     /**
      * Indicates whether this operation have been committed.

@@ -28,16 +28,16 @@ public interface UpdateOperation extends Operation {
     /**
      * Register <I>post-prepare</I> phase completion listener for notification.
      * @param listener completion listener
-     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     * @throws IllegalStateException if attempting to register completion listener for non active operation
      */
-    void addPostPrepare(Action listener);
+    void addPostPrepare(Listener<Context> listener);
 
     /**
      * Register <I>post-restart</I> phase completion listener for notification.
      * @param listener completion listener
-     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     * @throws IllegalStateException if attempting to register completion listener for non active operation
      */
-    void addPostRestart(Action listener);
+    void addPostRestart(Listener<Context> listener);
 
     ServiceBuilder addService();
     void removeService(ServiceController controller);
