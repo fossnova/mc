@@ -26,11 +26,11 @@ package org.fossnova.mc;
  */
 public enum Flag {
     /**
-     * A missing dependency will force update operation to rollback.
+     * Missing dependency will report problem of <B>ERROR</B> severity to the running operation
      */
     CRITICAL,
     /**
-     * A missing dependency will allow update operation to commit.
+     * Missing dependency will report problem of <B>INFO</B> severity to the running operation
      */
     UNCRITICAL
 }
