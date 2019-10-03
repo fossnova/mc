@@ -25,6 +25,20 @@ package org.fossnova.mc;
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface UpdateOperation extends Operation {
+    /**
+     * Register <I>post-prepare</I> phase completion listener for notification.
+     * @param listener completion listener
+     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     */
+    void addPostPrepare(Action listener);
+
+    /**
+     * Register <I>post-restart</I> phase completion listener for notification.
+     * @param listener completion listener
+     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     */
+    void addPostRestart(Action listener);
+
     ServiceBuilder addService();
     ServiceBuilder addService(Listener<ServiceController> listener);
     void removeService(ServiceController controller);

@@ -37,6 +37,13 @@ import java.util.concurrent.TimeUnit;
  */
 public interface Operation {
     /**
+     * Register <I>post-commit</I> phase completion listener for notification.
+     * @param listener completion listener
+     * @throws IllegalStateException if attempting to register completion listener for <I>non-active</I> operation
+     */
+    void addPostCommit(Action listener);
+
+    /**
      * Indicates whether this operation have been committed.
      * @return {@code true} if operation have been committed, {@code false} otherwise
      */
