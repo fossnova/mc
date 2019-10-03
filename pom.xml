@@ -47,4 +47,8 @@
     <url>https://github.com/fossnova/mc/issues</url>
   </issueManagement>
 
+  <properties>
+    <maven.javadoc.skip>false</maven.javadoc.skip>
+  </properties>
+
 </project>
