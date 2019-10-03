@@ -40,7 +40,5 @@ public interface UpdateOperation extends Operation {
     void addPostRestart(Action listener);
 
     ServiceBuilder addService();
-    ServiceBuilder addService(Listener<ServiceController> listener);
     void removeService(ServiceController controller);
-    void removeService(ServiceController controller, Listener<ServiceController> listener);
 }
