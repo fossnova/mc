@@ -19,19 +19,46 @@
  */
 package org.fossnova.mc;
 
-public final class Problem {
+import java.io.Serializable;
+
+/**
+ * Problem reported to the operation.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
+public final class Problem implements Serializable {
+    private static final long serialVersionUID = 1L;
     private final Severity severity;
     private final String message;
     private final Throwable reason;
 
+    /**
+     * Create new problem with given severity and root cause.
+     * @param severity problem severity
+     * @param reason root cause
+     * @throws NullPointerException if severity or root cause is null
+     */
     public Problem(final Severity severity, final Throwable reason) {
         this(severity, null, reason);
     }
 
+    /**
+     * Create new problem with given severity and description.
+     * @param severity problem severity
+     * @param message problem description
+     * @throws NullPointerException if severity or root cause is null
+     */
     public Problem(final Severity severity, final String message) {
         this(severity, message, null);
     }
 
+    /**
+     * Create new problem with given severity and description.
+     * @param severity problem severity
+     * @param message problem description
+     * @param reason root cause
+     * @throws NullPointerException if severity or description or root cause is null
+     */
     public Problem(final Severity severity, final String message, final Throwable reason) {
         if (severity == null) throw new NullPointerException();
         if (message == null && reason == null) throw new NullPointerException();
@@ -40,14 +67,26 @@ public final class Problem {
         this.reason = reason;
     }
 
+    /**
+     * Returns problem severity
+     * @return problem severity
+     */
     public Severity getSeverity() {
         return severity;
     }
 
+    /**
+     * Returns problem description or <code>null</code> if not available
+     * @return problem description or <code>null</code> if not available
+     */
     public String getMessage() {
         return message;
     }
 
+    /**
+     * Returns root cause of a problem or <code>null</code> if not available
+     * @return root cause of a problem or <code>null</code> if not available
+     */
     public Throwable getReason() {
         return reason;
     }
