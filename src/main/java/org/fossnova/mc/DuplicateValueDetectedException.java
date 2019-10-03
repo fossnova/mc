@@ -20,11 +20,11 @@
 package org.fossnova.mc;
 
 /**
- * Thrown when service installation attempt introduced duplicate value name in the service container.
+ * Thrown when service installation attempt introduced duplicate value in the service container.
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class DuplicateValueNameDetectedException extends Exception {
+public final class DuplicateValueDetectedException extends Exception {
     private static final long serialVersionUID = 1L;
-    private DuplicateValueNameDetectedException() {}
+    private DuplicateValueDetectedException() {}
 }
