@@ -19,6 +19,8 @@
  */
 package org.fossnova.mc;
 
+import java.util.concurrent.TimeUnit;
+
 public interface ServiceContainer {
     void newUpdateOperation(Listener<UpdateOperation> listener);
     void newReadOperation(Listener<ReadOperation> listener);
@@ -27,4 +29,12 @@ public interface ServiceContainer {
     <O extends Operation> void commit(O operation, Listener<O> listener);
     void prepare(UpdateOperation operation, Listener<UpdateOperation> listener);
     void restart(UpdateOperation operation, Listener<UpdateOperation> listener);
+    boolean isShutdown();
+    boolean isTerminated();
+    void shutdown();
+    void shutdown(Listener<ServiceContainer> listener);
+    void shutdown(long timeout, TimeUnit unit, Listener<ServiceContainer> listener);
+    void shutdownNow();
+    void shutdownNow(Listener<ServiceContainer> listener);
+    void shutdownNow(long timeout, TimeUnit unit, Listener<ServiceContainer> listener);
 }
