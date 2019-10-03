@@ -19,13 +19,12 @@
  */
 package org.fossnova.mc;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-public interface ServiceBuilder {
-    ServiceBuilder setMode(Mode mode);
-    ServiceBuilder setInstance(Service service);
-    <T> Consumer<T> provides(String name, String... aliases);
-    <T> Supplier<T> requires(String name, Flag flag);
-    void install() throws DependenciesCycleDetectedException, DuplicateValueNameDetectedException;
+/**
+ * An exception which is thrown when the given service installation attempt introduced
+ * dependencies cycle in the service container.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
+public final class DependenciesCycleDetectedException extends Exception {
+    private DependenciesCycleDetectedException() {}
 }
