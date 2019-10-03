@@ -19,7 +19,7 @@
  */package org.fossnova.mc;
 
 /**
- * Utility class for blocking ACTIVE operations.
+ * Handle for blocking ACTIVE operations.
  * Operation will stay ACTIVE until all acquired hold handles are not released.
  * It is useful for letting know when external code is working on behalf of an operation.
  *
@@ -28,13 +28,14 @@
 public interface OperationHoldHandle {
     /**
      * Adds problem description to associated operation.
+     * Have to be called before {@link #release()} method is called.
      * @param problem problem description
      * @throws IllegalStateException if problem is reported for non active operation
      */
     void addProblem(Problem problem);
 
     /**
-     * Releases <code>this</code> operation hold handle allowing associated operation to proceed.
+     * Releases <code>this</code> handle to allow associated operation to proceed.
      */
     void release();
 }
