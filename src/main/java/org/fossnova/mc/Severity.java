@@ -20,7 +20,7 @@
 package org.fossnova.mc;
 
 /**
- * Severity of reported problem.
+ * Problem severities.
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
