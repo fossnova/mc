@@ -19,9 +19,30 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Severity of reported problem.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public enum Severity {
+    /**
+     * This problem will not cause undesirable effects but it is something the user should be made aware of
+     * - the operation <B>DON'T NEED TO</B> be compensated in this case.
+     */
     INFO,
+    /**
+     * This problem could possibly cause undesirable effects now or in the future
+     * - the operation <B>SHOULD</B> be compensated in this case.
+     */
     WARNING,
+    /**
+     * This problem will likely cause undesirable effects now or in the future
+     * - the operation <B>HAVE TO</B> be compensated in this case.
+     */
     ERROR,
+    /**
+     * This problem will cause irreparable damage to the system integrity
+     * - the operation <B>HAVE TO</B> be compensated in this case.
+     */
     CRITICAL
 }
