@@ -27,6 +27,13 @@
  */
 public interface OperationHoldHandle {
     /**
+     * Adds problem description to associated operation.
+     * @param problem problem description
+     * @throws IllegalStateException if problem is reported for non active operation
+     */
+    void addProblem(Problem problem);
+
+    /**
      * Releases <code>this</code> operation hold handle allowing associated operation to proceed.
      */
     void release();
