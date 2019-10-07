@@ -22,11 +22,11 @@ package org.fossnova.mc;
 import java.util.concurrent.TimeUnit;
 
 /**
- * A service container.
+ * Service container.
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public interface ServiceContainer {
+public interface Container {
     /**
      * Creates a new modifying operation asynchronously.
      * The completion listener is called when operation is created.
@@ -108,7 +108,7 @@ public interface ServiceContainer {
      *
      * @param listener completion listener for container shut down.
      */
-    void shutdown(Listener<ServiceContainer> listener);
+    void shutdown(Listener<Container> listener);
 
     /**
      * Initiates an orderly shutdown in which previously submitted operations are executed,
@@ -118,5 +118,5 @@ public interface ServiceContainer {
      * @param unit the time unit of the timeout argument
      * @param listener completion listener for container shut down.
      */
-    void shutdown(long timeout, TimeUnit unit, Listener<ServiceContainer> listener);
+    void shutdown(long timeout, TimeUnit unit, Listener<Container> listener);
 }

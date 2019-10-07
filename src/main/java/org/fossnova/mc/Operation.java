@@ -26,8 +26,8 @@ import java.util.concurrent.TimeUnit;
  * There are two types of operations:
  *
  * <UL>
- *     <LI>{@link UpdateOperation} - modifying operation can modify internal {@link ServiceContainer} states</LI>
- *     <LI>{@link ReadOperation} - read-only operations cannot modify internal {@link ServiceContainer} states</LI>
+ *     <LI>{@link UpdateOperation} - modifying operation can modify internal {@link Container} states</LI>
+ *     <LI>{@link ReadOperation} - read-only operations cannot modify internal {@link Container} states</LI>
  * </UL>
  *
  * Every <B>Operation</B> is associated with <B>ServiceContainer</B> that created it.
