@@ -19,41 +19,16 @@
  */
 package org.fossnova.mc;
 
-import java.util.Collection;
-
 /**
- * Service controller is associated with every service installed into service container.
- * It can be used to remove service from service container
- * or to query information about associated service.
+ * Service states.
  */
-public interface ServiceController {
+public enum State {
     /**
-     * Gets service mode.
-     * @return service mode
+     * Service is down and waiting.
      */
-    Mode mode();
-
+    DOWN,
     /**
-     * Gets service state.
-     * @return service state
+     * Service is up and running.
      */
-    State state();
-
-    /**
-     * Gets all value names our service provide.
-     * @return all value names our service provide
-     */
-    Collection<String> provides();
-
-    /**
-     * Gets all dependency value names our service require.
-     * @return all dependency value names our service require
-     */
-    Collection<String> requires();
-
-    /**
-     * Gets all dependency value names that are not available.
-     * @return dependency value names that are not available.
-     */
-    Collection<String> missing();
+    UP
 }
