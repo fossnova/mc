@@ -27,5 +27,6 @@ public interface ServiceBuilder {
     ServiceBuilder setInstance(Service service);
     <T> Consumer<T> provides(String name, String... aliases);
     <T> Supplier<T> requires(String name, Flag flag);
+    ServiceBuilder addListener(ServiceListener listener);
     ServiceController install() throws DependenciesCycleDetectedException, DuplicateValueDetectedException;
 }
