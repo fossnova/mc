@@ -25,8 +25,8 @@ package org.fossnova.mc;
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface Context {
-    void complete();
     // TODO: implementation will delegate to UpdateOperation.addProblem() method
     void addProblem(Problem problem);
     void asynchronous();
+    void complete();
 }
