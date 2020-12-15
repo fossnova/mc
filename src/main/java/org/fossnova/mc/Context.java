@@ -32,4 +32,5 @@ public interface Context {
     void complete();
     ServiceController getController();
     void execute(Runnable command);
+    ServiceBuilder addService();
 }
