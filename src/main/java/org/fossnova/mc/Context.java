@@ -46,6 +46,7 @@ package org.fossnova.mc;
  */
 public interface Context {
     void complete();
+    // TODO: implementation will delegate to UpdateOperation.addProblem() method
     void addProblem(Problem problem);
     void asynchronous();
 }
