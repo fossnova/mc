@@ -28,6 +28,24 @@ import java.util.concurrent.TimeUnit;
  */
 public interface Container {
     /**
+     * Gets container name.
+     * @return container name
+     */
+    String getName();
+
+    /**
+     * Whether this service container will automatically shut down on VM exit.
+     * @return <code>true</code> if this service container will automatically shut down on VM exit, <code>false</code> otherwise
+     */
+    boolean isAutoShutdown();
+
+    /**
+     * Returns number of service container internal worker threads
+     * @return number of service container internal worker threads
+     */
+    int getThreadsCount();
+
+    /**
      * Creates a new modifying operation asynchronously.
      * The completion listener is called when operation is created.
      * @param listener completion listener
