@@ -19,6 +19,8 @@
  */
 package org.fossnova.mc;
 
+import java.util.Collection;
+
 /**
  * Only read operations can directly access values from service container.
  *
@@ -33,4 +35,8 @@ public interface ReadOperation extends Operation {
      * @throws IllegalStateException if value retrieval attempt is detected for non active operation
      */
     <V> V getValue(String name);
+
+    Collection<String> getValueNames();
+
+    void dumpServices();
 }
