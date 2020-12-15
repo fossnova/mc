@@ -24,7 +24,7 @@ package org.fossnova.mc;
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class DuplicateValueDetectedException extends Exception {
+public final class DuplicateValueDetectedException extends ServiceException {
     private static final long serialVersionUID = 1L;
     private DuplicateValueDetectedException() {}
 }
