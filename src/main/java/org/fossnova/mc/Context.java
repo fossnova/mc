@@ -27,6 +27,9 @@ package org.fossnova.mc;
 public interface Context {
     // TODO: implementation will delegate to UpdateOperation.addProblem() method
     void addProblem(Problem problem);
+    // TODO: if this method is not explicitly called and neither is complete() in lifecycle methods then fallback method is complete()
     void asynchronous();
     void complete();
+    ServiceController getController();
+    void execute(Runnable command);
 }
