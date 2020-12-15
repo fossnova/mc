@@ -20,27 +20,7 @@
 package org.fossnova.mc;
 
 /**
- * Provides an access to the operation's <code>post phase</code> lifecycle events.
- * There are three <code>Post Phase</code> kind of events defined for particular operation:
- * <UL>
- *     <LI><code>post-prepare</code> - action completion listeners are called before operation will enter <B>PREPARED</B> state</LI>
- *     <LI><code>post-restart</code> - action completion listeners are called called before operation will enter <B>RESTARTED</B> state</LI>
- *     <LI><code>post-commit</code> - action completion listeners are called called before operation will enter <B>COMMITTED</B> state</LI>
- * </UL>
- * <P>
- * Action processing code communicates with associated operation
- * via {@link org.fossnova.mc.Context#complete()} method.
- * Operation will block until all actions will not be completed.
- * This allows 'Atomicity' like behaviour for compound operations
- * leveraging service container operations.
- * </P>
- * <P>Action processing code cannot fail. Users have to be careful
- * to always call {@link org.fossnova.mc.Context#complete()} especially
- * in cases {@link org.fossnova.mc.Context#asynchronous()} was called
- * before and action code is executed in some other thread.
- * Failing to do so operation will block forever. That would result in
- * deadlock-like behaviour in the running system.
- * </P>
+ * TODO: javadoc
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
