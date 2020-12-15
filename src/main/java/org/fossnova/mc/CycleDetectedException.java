@@ -20,11 +20,11 @@
 package org.fossnova.mc;
 
 /**
- * Thrown when service installation attempt introduced duplicate value in the service container.
+ * Thrown when service installation attempt would introduce values dependency cycle in the service container.
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class DuplicateValueDetectedException extends ServiceException {
+public final class CycleDetectedException extends ServiceException {
     private static final long serialVersionUID = 1L;
-    private DuplicateValueDetectedException() {}
+    private CycleDetectedException() {}
 }
