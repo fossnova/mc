@@ -27,7 +27,7 @@ import org.junit.Test;
 /**
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class InstallServiceTest extends AbstractUpdateOperationTest {
+public final class NegativeInstallServiceTest extends AbstractUpdateOperationTest {
 
     @Test
     public void testCannotInstallNoopService() {
