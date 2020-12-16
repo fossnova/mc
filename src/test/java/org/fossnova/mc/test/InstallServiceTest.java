@@ -20,39 +20,22 @@
 package org.fossnova.mc.test;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import org.fossnova.mc.*;
+import static org.junit.Assert.fail;
+import org.fossnova.mc.ServiceConfigurationException;
 import org.junit.Test;
 
 /**
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class InstallServiceTest {
-    volatile ServiceConfigurationException expected;
+public final class InstallServiceTest extends AbstractUpdateOperationTest {
 
     @Test
     public void testCannotInstallNoopService() {
-        final Container container = ContainerFactory.newContainer().install();
-        assertTrue(container.newUpdateOperation(new Listener<UpdateOperation>() {
-            @Override
-            public void onComplete(UpdateOperation op) {
-                try {
-                    ServiceBuilder sb = op.addService();
-                    sb.install();
-                } catch (ServiceConfigurationException e) {
-                    synchronized (InstallServiceTest.this) {
-                        expected = e;
-                        notify();
-                    }
-                }
-                // TODO: commit operation
-            }
-        }));
-        synchronized (this) {
-            while (expected != null) {
-                try { wait(); } catch (InterruptedException ignored) {}
-            }
-            assertNotNull(expected);
+        try {
+            updateOp.addService().install();
+            fail();
+        } catch (ServiceConfigurationException e) {
+            assertNotNull(e);
         }
     }
 
