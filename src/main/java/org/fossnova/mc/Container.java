@@ -45,6 +45,9 @@ public interface Container {
      */
     int getThreadsCount();
 
+    boolean upgrade(ReadOperation operation, Listener<UpdateOperation> listener);
+    boolean downgrade(UpdateOperation operation, Listener<ReadOperation> listener);
+
     /**
      * Creates a new modifying operation asynchronously.
      * The completion listener is called when operation is created.
