@@ -26,7 +26,7 @@ public interface ServiceBuilder {
     ServiceBuilder setMode(Mode mode);
     ServiceBuilder setInstance(Service service);
     <T> Consumer<T> provides(String name, String... aliases);
-    <T> Supplier<T> requires(String name, Flag flag);
+    <T> Supplier<T> requires(String name);
     ServiceBuilder addListener(ServiceListener listener);
     ServiceController install() throws CycleDetectedException, DuplicityDetectedException;
 }
