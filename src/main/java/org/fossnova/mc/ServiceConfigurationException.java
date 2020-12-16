@@ -19,14 +19,12 @@
  */
 package org.fossnova.mc;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-public interface ServiceBuilder {
-    ServiceBuilder setMode(Mode mode);
-    ServiceBuilder setInstance(Service service);
-    <T> Consumer<T> provides(String name, String... aliases);
-    <T> Supplier<T> requires(String name);
-    ServiceBuilder addListener(ServiceListener listener);
-    ServiceController install() throws CycleDetectedException, DuplicityDetectedException, ServiceConfigurationException;
+/**
+ * Thrown when service installation attempt would introduce values dependency cycle in the service container.
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
+public final class ServiceConfigurationException extends ServiceException {
+    private static final long serialVersionUID = 1L;
+    private ServiceConfigurationException() {}
 }
