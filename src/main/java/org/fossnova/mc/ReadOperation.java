@@ -38,5 +38,5 @@ public interface ReadOperation extends Operation {
 
     Collection<String> getValueNames();
 
-    void dumpServices();
+    Collection<ServiceController> getControllers();
 }
