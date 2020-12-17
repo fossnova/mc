@@ -30,6 +30,7 @@ public interface Context {
     // TODO: if this method is not explicitly called and neither is complete() in lifecycle methods then fallback method is complete()
     void asynchronous();
     void complete();
+    void fail();
     void execute(Runnable command);
     <V> void provide(String name, V value);
     <V> V require(String name);
