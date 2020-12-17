@@ -85,8 +85,9 @@ public interface Container {
      * @param operation to be committed
      * @param listener completion listener
      * @param <O> either updating or read-only operation
+     * @return <code>true</code> if commit request was accepted, <code>false</code> otherwise
      */
-    <O extends Operation> void commit(O operation, Listener<O> listener);
+    <O extends Operation> boolean commit(O operation, Listener<O> listener);
 
     /**
      * Forces ACTIVE updating operation to transition to PREPARED state.
@@ -96,8 +97,9 @@ public interface Container {
      * in order to allow other pending operations to proceed.
      * @param operation ACTIVE operation
      * @param listener completion listener
+     * @return <code>true</code> if prepare request was accepted, <code>false</code> otherwise
      */
-    void prepare(UpdateOperation operation, Listener<UpdateOperation> listener);
+    boolean prepare(UpdateOperation operation, Listener<UpdateOperation> listener);
 
     /**
      * Restarts PREPARED updating operation to emulate compensating operation behavior.
@@ -106,8 +108,9 @@ public interface Container {
      * will be TERMINATED and new updating transaction in ACTIVE state will be created and passed to listener.
      * @param operation operation to TERMINATE and create compensating operation for
      * @param listener completion listener
+     * @return <code>true</code> if restart request was accepted, <code>false</code> otherwise
      */
-    void restart(UpdateOperation operation, Listener<UpdateOperation> listener);
+    boolean restart(UpdateOperation operation, Listener<UpdateOperation> listener);
 
     /**
      * Returns <code>true</code> if this service container has been shut down.
@@ -118,7 +121,7 @@ public interface Container {
     /**
      * Returns <code>true</code> if all operations have completed following shut down.
      * Note that <code>isTerminated</code> is never <code>true</code>
-     * unless either <code>shutdown</code> or <code>shutdownNow</code> was called first.
+     * unless <code>shutdown</code> was called first.
      * @return true if all operations have completed following shut down
      */
     boolean isTerminated();
@@ -128,8 +131,9 @@ public interface Container {
      * but no new operations will be accepted. Invocation has no additional effect if already shut down.
      *
      * @param listener completion listener for container shut down.
+     * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
-    void shutdown(Listener<Container> listener);
+    boolean shutdown(Listener<Container> listener);
 
     /**
      * Initiates an orderly shutdown in which previously submitted operations are executed,
@@ -138,6 +142,7 @@ public interface Container {
      * @param timeout the maximum time to wait
      * @param unit the time unit of the timeout argument
      * @param listener completion listener for container shut down.
+     * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
-    void shutdown(long timeout, TimeUnit unit, Listener<Container> listener);
+    boolean shutdown(long timeout, TimeUnit unit, Listener<Container> listener);
 }
