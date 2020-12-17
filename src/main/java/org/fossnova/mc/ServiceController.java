@@ -56,4 +56,10 @@ public interface ServiceController {
      * @return dependency value names that are not available.
      */
     Collection<String> missing();
+
+    /**
+     * Returns operation problems report.
+     * @return operation problems report
+     */
+    OperationReport problems();
 }

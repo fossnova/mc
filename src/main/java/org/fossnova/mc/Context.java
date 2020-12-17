@@ -34,4 +34,11 @@ public interface Context {
     void execute(Runnable command);
     <V> void provide(String name, V value);
     <V> V require(String name);
+
+    /**
+     * Returns operation hold handle.
+     * @return operation hold handle
+     * @throws IllegalStateException if hold handle was requested for non active operation
+     */
+    OperationHoldHandle holdOn();
 }
