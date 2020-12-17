@@ -45,6 +45,9 @@ public interface Container {
      */
     int getThreadsCount();
 
+    ServiceBuilder addService();
+    void removeService(ServiceController controller);
+
     boolean upgrade(ReadOperation operation, Listener<UpdateOperation> listener);
     boolean downgrade(UpdateOperation operation, Listener<ReadOperation> listener);
 

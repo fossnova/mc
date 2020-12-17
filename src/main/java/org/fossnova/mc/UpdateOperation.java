@@ -39,6 +39,4 @@ public interface UpdateOperation extends Operation {
      */
     void addPostRestart(Listener<Context> listener);
 
-    ServiceBuilder addService();
-    void removeService(ServiceController controller);
 }
