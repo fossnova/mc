@@ -27,33 +27,4 @@ import java.util.Collection;
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface ReadOperation extends Operation {
-    /**
-     * Gets required value from service container.
-     * @param name value name
-     * @param <V> value type
-     * @return associated value with given name, or throws ValueNotBoundException if value is not bound
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    <V> V getRequiredValue(String name) throws ValueNotBoundException;
-
-    /**
-     * Gets optional value from service container.
-     * @param name value name
-     * @param <V> value type
-     * @return associated value with given name, or <code>null</code> if not present
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    <V> V getOptionalValue(String name);
-
-    Collection<String> getValueNames();
-
-    /**
-     * Gets service controller providing given value name.
-     * @param name value name
-     * @return service controller providing given value name, or <code>null</code> if not present
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    ServiceController getController(String name);
-
-    Collection<ServiceController> getControllers();
 }
