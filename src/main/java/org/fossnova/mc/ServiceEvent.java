@@ -27,6 +27,5 @@ package org.fossnova.mc;
 public enum ServiceEvent {
     REMOVED,
     DOWN,
-    FAILED,
     UP
 }
