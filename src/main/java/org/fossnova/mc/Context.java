@@ -40,5 +40,5 @@ public interface Context {
      * @return operation hold handle
      * @throws IllegalStateException if hold handle was requested for non active operation
      */
-    OperationHoldHandle holdOn();
+    ServiceHoldHandle holdOn();
 }

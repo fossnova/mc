@@ -25,7 +25,7 @@
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public interface OperationHoldHandle {
+public interface ServiceHoldHandle {
     /**
      * Adds problem description to associated operation.
      * Have to be called before {@link #release()} method is called.
