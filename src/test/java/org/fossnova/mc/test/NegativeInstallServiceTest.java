@@ -19,9 +19,12 @@
  */
 package org.fossnova.mc.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import org.fossnova.mc.ReadOperation;
 import org.fossnova.mc.ServiceConfigurationException;
 import org.fossnova.mc.UpdateOperation;
 import org.junit.Test;
@@ -32,7 +35,8 @@ import org.junit.Test;
 public final class NegativeInstallServiceTest extends AbstractUpdateOperationTest {
 
     @Test
-    public void testCannotInstallNoopService() throws Exception {
+    public void attemptToInstallInvalidService() throws Exception {
+        // attempt to create invalid service
         final UpdateOperation updateOp = newUpdateOperation();
         try {
             updateOp.addService().install();
@@ -42,6 +46,14 @@ public final class NegativeInstallServiceTest extends AbstractUpdateOperationTes
         } finally {
             prepare(updateOp);
             commit(updateOp);
+        }
+        // ensure nothing changed inside container
+        final ReadOperation readOp = newReadOperation();
+        try {
+            assertEquals(0, readOp.getControllers().size());
+            assertEquals(0, readOp.getValueNames().size());
+        } finally {
+            commit(readOp);
         }
     }
 

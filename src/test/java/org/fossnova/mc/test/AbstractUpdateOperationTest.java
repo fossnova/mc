@@ -46,13 +46,18 @@ class AbstractUpdateOperationTest {
         return container.newUpdateOperation((op) -> f.complete(op)) ? f.get() : null;
     }
 
+    protected ReadOperation newReadOperation() throws Exception {
+        final CompletableFuture<ReadOperation> f = new CompletableFuture<>();
+        return container.newReadOperation((op) -> f.complete(op)) ? f.get() : null;
+    }
+
     protected void prepare(final UpdateOperation op) throws Exception {
         final CompletionListener l = new CompletionListener();
         container.prepare(op, l);
         l.awaitCompletion();
     }
 
-    protected void commit(final UpdateOperation op) throws Exception {
+    protected void commit(final Operation op) throws Exception {
         final CompletionListener l = new CompletionListener();
         container.commit(op, l);
         l.awaitCompletion();
