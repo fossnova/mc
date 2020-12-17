@@ -90,4 +90,30 @@ public final class Problem implements Serializable {
     public Throwable getReason() {
         return reason;
     }
+
+    /**
+     * Problem severities.
+     */
+    public enum Severity {
+        /**
+         * This problem will not cause undesirable effects but it is something the user should be made aware of
+         * - the service <B>DON'T NEED TO</B> fail in this case.
+         */
+        INFO,
+        /**
+         * This problem could possibly cause undesirable effects now or in the future
+         * - the service <B>SHOULD</B> fail in this case.
+         */
+        WARNING,
+        /**
+         * This problem will likely cause undesirable effects now or in the future
+         * - the service <B>HAVE TO</B> fail in this case.
+         */
+        ERROR,
+        /**
+         * This problem will cause irreparable damage to the system integrity
+         * - the service <B>HAVE TO</B> fail in this case.
+         */
+        CRITICAL
+    }
 }
