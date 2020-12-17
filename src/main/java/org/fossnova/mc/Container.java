@@ -96,10 +96,10 @@ public interface Container {
      * Initiates an orderly shutdown in which previously submitted operations are executed,
      * but no new operations will be accepted. Invocation has no additional effect if already shut down.
      *
-     * @param listener completion listener for container shut down.
+     * @param containerListener completion listener for container shut down.
      * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
-    boolean shutdown(Listener<Container> listener);
+    boolean shutdown(ContainerListener containerListener);
 
     /**
      * Initiates an orderly shutdown in which previously submitted operations are executed,
@@ -107,8 +107,8 @@ public interface Container {
      *
      * @param timeout the maximum time to wait
      * @param unit the time unit of the timeout argument
-     * @param listener completion listener for container shut down.
+     * @param containerListener completion listener for container shut down.
      * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
-    boolean shutdown(long timeout, TimeUnit unit, Listener<Container> listener);
+    boolean shutdown(long timeout, TimeUnit unit, ContainerListener containerListener);
 }

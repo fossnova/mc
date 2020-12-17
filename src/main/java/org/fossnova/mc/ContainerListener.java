@@ -20,18 +20,10 @@
 package org.fossnova.mc;
 
 /**
- * A completion listener for requested object or event.
- *
- * @param <R> completion result type
+ * A container shutdown completion listener.
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public interface Listener<R> extends java.util.EventListener {
-
-    /**
-     * Completion notification for requested object or event.
-     *
-     * @param result completion result
-     */
-    void onComplete(R result);
+public interface ContainerListener {
+    void shutdownComplete(Container container);
 }
