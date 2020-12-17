@@ -19,16 +19,9 @@
  */
 package org.fossnova.mc;
 
-/**
- * Service states.
- */
-public enum State {
-    /**
-     * Service is down and waiting.
-     */
+public enum ServiceState {
+    REMOVED,
     DOWN,
-    /**
-     * Service is up and running.
-     */
+    FAILED,
     UP
 }

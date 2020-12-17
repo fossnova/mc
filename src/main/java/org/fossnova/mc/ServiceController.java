@@ -37,7 +37,7 @@ public interface ServiceController {
      * Gets service state.
      * @return service state
      */
-    State state();
+    ServiceState state();
 
     /**
      * Gets all value names our service provide.
