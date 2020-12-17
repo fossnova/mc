@@ -31,4 +31,6 @@ public interface Context {
     void asynchronous();
     void complete();
     void execute(Runnable command);
+    <V> void provide(String name, V value);
+    <V> V require(String name);
 }

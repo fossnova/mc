@@ -19,14 +19,11 @@
  */
 package org.fossnova.mc;
 
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
 public interface ServiceBuilder {
     ServiceBuilder setMode(Mode mode);
     ServiceBuilder setInstance(Service service);
-    <T> Consumer<T> provides(String name, String... aliases);
-    <T> Supplier<T> requires(String name);
+    ServiceBuilder provides(String... values);
+    ServiceBuilder requires(String... values);
     ServiceBuilder addListener(ServiceListener listener);
     ServiceController install() throws CycleDetectedException, DuplicityDetectedException, ServiceConfigurationException;
 }
