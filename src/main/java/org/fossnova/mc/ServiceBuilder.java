@@ -20,7 +20,7 @@
 package org.fossnova.mc;
 
 public interface ServiceBuilder {
-    ServiceBuilder setMode(Mode mode);
+    ServiceBuilder setMode(ServiceMode mode);
     ServiceBuilder setInstance(Service service);
     ServiceBuilder provides(String... values);
     ServiceBuilder requires(String... values);

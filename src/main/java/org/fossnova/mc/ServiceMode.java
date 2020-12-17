@@ -24,7 +24,7 @@ package org.fossnova.mc;
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public enum Mode {
+public enum ServiceMode {
     /**
      * Service starts as soon as all dependencies are satisfied.
      * Will start even if there are no demandants
