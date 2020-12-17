@@ -21,7 +21,9 @@ package org.fossnova.mc.test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
+
 import org.fossnova.mc.ServiceConfigurationException;
+import org.fossnova.mc.UpdateOperation;
 import org.junit.Test;
 
 /**
@@ -30,12 +32,16 @@ import org.junit.Test;
 public final class NegativeInstallServiceTest extends AbstractUpdateOperationTest {
 
     @Test
-    public void testCannotInstallNoopService() {
+    public void testCannotInstallNoopService() throws Exception {
+        final UpdateOperation updateOp = newUpdateOperation();
         try {
             updateOp.addService().install();
             fail();
         } catch (ServiceConfigurationException e) {
             assertNotNull(e);
+        } finally {
+            prepare(updateOp);
+            commit(updateOp);
         }
     }
 

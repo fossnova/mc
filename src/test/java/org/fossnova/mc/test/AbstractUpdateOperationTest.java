@@ -23,71 +23,50 @@ import org.fossnova.mc.*;
 import org.junit.After;
 import org.junit.Before;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
 import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 class AbstractUpdateOperationTest {
-    protected UpdateOperation updateOp;
-    private Container container;
+    protected Container container;
     private final Object lock = new Object();
-    private volatile boolean down;
 
     @Before
     public final void init() {
-        down = false;
         container = ContainerFactory.newContainer().install();
-        updateOp = getUpdateOperation();
     }
 
-    private UpdateOperation getUpdateOperation() {
-        if (container.newUpdateOperation(new Listener<UpdateOperation>() {
-            @Override
-            public void onComplete(UpdateOperation op) {
-                synchronized (lock) {
-                    updateOp = op;
-                    notify();
-                }
-            }
-        })) {
-            synchronized (lock) {
-                while (updateOp == null) {
-                    try {
-                        lock.wait();
-                    } catch (InterruptedException ignored) {
-                    }
-                }
-            }
-            return updateOp;
-        }
-        return null;
+    protected UpdateOperation newUpdateOperation() throws Exception {
+        final CompletableFuture<UpdateOperation> f = new CompletableFuture<>();
+        return container.newUpdateOperation((op) -> f.complete(op)) ? f.get() : null;
+    }
+
+    protected void prepare(final UpdateOperation op) throws Exception {
+        final CompletionListener l = new CompletionListener();
+        container.prepare(op, l);
+        l.awaitCompletion();
+    }
+
+    protected void commit(final UpdateOperation op) throws Exception {
+        final CompletionListener l = new CompletionListener();
+        container.commit(op, l);
+        l.awaitCompletion();
+    }
+
+    protected void restart(final UpdateOperation op) throws Exception {
+        final CompletionListener l = new CompletionListener();
+        container.restart(op, l);
+        l.awaitCompletion();
     }
 
     @After
-    public final void destroy() {
-        // prepare
-        CompletionListener<UpdateOperation> prepareListener = new CompletionListener<>();
-        container.prepare(updateOp, prepareListener);
-        prepareListener.awaitCompletionUninterruptibly();
-        // commit
-        CompletionListener<UpdateOperation> commitListener = new CompletionListener<>();
-        container.commit(updateOp, commitListener);
-        commitListener.awaitCompletionUninterruptibly();
-        // shutdown
-        container.shutdown(new Listener<Container>() {
-            @Override
-            public void onComplete(Container result) {
-                down = true;
-                synchronized (lock) {
-                    lock.notify();
-                }
-            }
-        });
-        synchronized (lock) {
-            while (!down) {
-                try { lock.wait(); } catch (InterruptedException ignored) {}
-            }
-        }
+    public final void destroy() throws Exception {
+        final CompletableFuture<Container> f = new CompletableFuture<>();
+        if (container.shutdown(c -> f.complete(c))) f.get();
     }
 }
