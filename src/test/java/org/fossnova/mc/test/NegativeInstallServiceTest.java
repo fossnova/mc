@@ -26,7 +26,6 @@ import static org.junit.Assert.fail;
 
 import org.fossnova.mc.ReadOperation;
 import org.fossnova.mc.ServiceConfigurationException;
-import org.fossnova.mc.UpdateOperation;
 import org.junit.Test;
 
 /**
