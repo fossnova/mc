@@ -61,5 +61,5 @@ public interface ServiceController {
      * Returns operation problems report.
      * @return operation problems report
      */
-    OperationReport problems();
+    Collection<Problem> problems();
 }
