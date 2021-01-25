@@ -46,25 +46,8 @@ public interface Container {
      */
     int getThreadsCount();
 
-    ServiceBuilder addService();
+    ServiceController addService(Class<? extends Service> clazz);
     void removeService(ServiceController controller);
-    /**
-     * Gets required value from service container.
-     * @param name value name
-     * @param <V> value type
-     * @return associated value with given name, or throws ValueNotBoundException if value is not bound
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    <V> V getRequiredValue(String name) throws ValueNotBoundException;
-
-    /**
-     * Gets optional value from service container.
-     * @param name value name
-     * @param <V> value type
-     * @return associated value with given name, or <code>null</code> if not present
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    <V> V getOptionalValue(String name);
 
     Collection<String> getValueNames();
 
