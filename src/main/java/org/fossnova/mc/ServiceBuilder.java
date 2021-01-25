@@ -22,8 +22,8 @@ package org.fossnova.mc;
 public interface ServiceBuilder {
     ServiceBuilder setMode(ServiceMode mode);
     ServiceBuilder setInstance(Service service);
-    ServiceBuilder provides(Class<?> valueType, String valueName);
-    ServiceBuilder requires(Class<?> valueType, String valueName);
+    ServiceBuilder provides(String... valueNames);
+    ServiceBuilder requires(String... valueNames);
     ServiceBuilder addListener(ServiceListener listener);
     ServiceController install() throws CycleDetectedException, DuplicityDetectedException, ServiceConfigurationException;
 }

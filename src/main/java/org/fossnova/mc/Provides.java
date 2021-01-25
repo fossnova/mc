@@ -30,5 +30,5 @@ import static java.lang.annotation.ElementType.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(value={TYPE})
 public @interface Provides {
-    Value[] values();
+    String[] value();
 }

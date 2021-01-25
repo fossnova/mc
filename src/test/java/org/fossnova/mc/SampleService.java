@@ -1,13 +1,7 @@
 package org.fossnova.mc;
 
-@Provides(values = {
-    @Value(name = SampleService.r1, type = String.class),
-    @Value(name = SampleService.r2, type = String.class)
-})
-@Requires(values = {
-    @Value( name = SampleService.p1, type = String.class),
-    @Value( name = SampleService.p2, type = String.class)
-})
+@Provides({SampleService.p1, SampleService.p2})
+@Requires({SampleService.r1, SampleService.r2})
 @Mode(ServiceMode.LAZY) // default mode is active if not specified
 public final class SampleService implements Service {
 
