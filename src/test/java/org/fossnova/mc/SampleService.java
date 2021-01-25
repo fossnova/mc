@@ -12,12 +12,12 @@ public final class SampleService implements Service {
 
     @Override
     public void start(StartContext ctx) {
-        ctx.provide(p1, "provides 1 value"); // type check is performed internally
-        ctx.provide(p2, "provides 2 value"); // type check is performed internally
+        ctx.set(p1, "provides 1 value"); // type check is performed internally
+        ctx.set(p2, "provides 2 value"); // type check is performed internally
         // internal check is implemented that provided value is set up only once
         // internal check checks if all provided values are initialized - null is acceptable
-        String d1 = ctx.require(r1);
-        String d2 = ctx.require(r2);
+        String d1 = ctx.get(r1);
+        String d2 = ctx.get(r2);
         // do something with d1 & d2
     }
 

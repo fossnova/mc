@@ -23,5 +23,6 @@ package org.fossnova.mc;
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface StartContext extends Context {
+    <V> void set(String name, V value);
     void fail(Throwable reason);
 }

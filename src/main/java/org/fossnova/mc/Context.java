@@ -25,6 +25,5 @@ package org.fossnova.mc;
 interface Context {
     void asynchronous();
     void complete();
-    <V> void provide(String name, V value);
-    <V> V require(String name);
+    <V> V get(String name);
 }
