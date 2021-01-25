@@ -61,5 +61,5 @@ public interface ServiceController {
      * Returns failure reason if any.
      * @return failure reason if any.
      */
-    Throwable reasong();
+    Throwable reason();
 }
