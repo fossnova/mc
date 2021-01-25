@@ -25,5 +25,5 @@ public interface ServiceBuilder {
     ServiceBuilder provides(String... valueNames);
     ServiceBuilder requires(String... valueNames);
     ServiceBuilder addListener(ServiceListener listener);
-    ServiceController install() throws CycleDetectedException, DuplicityDetectedException, ServiceConfigurationException;
+    ServiceController install() throws CycleDetectedException, DuplicityDetectedException;
 }
