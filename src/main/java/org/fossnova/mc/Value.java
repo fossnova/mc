@@ -19,11 +19,17 @@
  */
 package org.fossnova.mc;
 
-public interface ServiceBuilder {
-    ServiceBuilder setMode(ServiceMode mode);
-    ServiceBuilder setInstance(Service service);
-    ServiceBuilder provides(Class<?> valueType, String valueName);
-    ServiceBuilder requires(Class<?> valueType, String valueName);
-    ServiceBuilder addListener(ServiceListener listener);
-    ServiceController install() throws CycleDetectedException, DuplicityDetectedException, ServiceConfigurationException;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.*;
+
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(value={TYPE})
+public @interface Value {
+    String name();
+    Class<?> type();
 }
