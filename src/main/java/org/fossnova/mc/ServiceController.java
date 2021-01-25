@@ -62,4 +62,7 @@ public interface ServiceController {
      * @return failure reason if any.
      */
     Throwable reason();
+
+    boolean addListener(ServiceListener listener);
+    boolean removeListener(ServiceListener listener);
 }

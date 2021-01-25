@@ -49,16 +49,6 @@ public interface Container {
     ServiceController addService(Class<? extends Service> clazz);
     void removeService(ServiceController controller);
 
-    Collection<String> getValueNames();
-
-    /**
-     * Gets service controller providing given value name.
-     * @param name value name
-     * @return service controller providing given value name, or <code>null</code> if not present
-     * @throws IllegalStateException if value retrieval attempt is detected for non active operation
-     */
-    ServiceController getController(String name);
-
     Collection<ServiceController> getControllers();
 
     /**
