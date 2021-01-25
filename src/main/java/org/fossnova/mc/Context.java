@@ -19,26 +19,12 @@
  */
 package org.fossnova.mc;
 
-import java.util.concurrent.Executor;
-
 /**
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-interface Context extends Executor {
-    // TODO: implementation will delegate to UpdateOperation.addProblem() method
-    void addProblem(Problem problem);
-    // TODO: if this method is not explicitly called and neither is complete() in lifecycle methods then fallback method is complete()
+interface Context {
     void asynchronous();
     void complete();
-    void fail();
-    void execute(Runnable command);
     <V> void provide(String name, V value);
     <V> V require(String name);
-
-    /**
-     * Returns operation hold handle.
-     * @return operation hold handle
-     * @throws IllegalStateException if hold handle was requested for non active operation
-     */
-    ServiceHoldHandle holdOn();
 }

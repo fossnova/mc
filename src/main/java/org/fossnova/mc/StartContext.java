@@ -23,6 +23,5 @@ package org.fossnova.mc;
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface StartContext extends Context {
-    void addProblem(Problem problem);
-    void fail();
+    void fail(Throwable reason);
 }

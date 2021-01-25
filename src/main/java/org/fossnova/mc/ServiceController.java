@@ -58,8 +58,8 @@ public interface ServiceController {
     Collection<String> missing();
 
     /**
-     * Returns operation problems report.
-     * @return operation problems report
+     * Returns failure reason if any.
+     * @return failure reason if any.
      */
-    Collection<Problem> problems();
+    Throwable reasong();
 }
