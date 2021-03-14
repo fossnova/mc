@@ -48,7 +48,7 @@ public interface ContainerBuilder {
 
     /**
      * Creates new service container using given configuration.
-     * @return new service container instance
+     * @return new service container controller instance
      */
-    Container install();
+    ContainerController finish();
 }
