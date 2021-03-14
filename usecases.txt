@@ -1,0 +1,5 @@
+Usecase 1:
+ * Installing services without need to wait for them to start (just write OP)
+
+Usecase 2:
+ * Read service values (just read OP)
