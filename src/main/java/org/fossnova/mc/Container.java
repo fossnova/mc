@@ -46,11 +46,6 @@ public interface Container {
      */
     int getThreadsCount();
 
-    ServiceController addService(Class<? extends Service> clazz);
-    void removeService(ServiceController controller);
-
-    Collection<ServiceController> getControllers();
-
     /**
      * Returns <code>true</code> if this service container has been shut down.
      * @return true if this service container has been shut down
@@ -84,4 +79,10 @@ public interface Container {
      * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
     boolean shutdown(long timeout, TimeUnit unit, ContainerListener containerListener);
+
+    WriteOperation newWriteOperation();
+    boolean newWriteOperation(CompletionListener<WriteOperation> listener);
+
+    ReadOperation newReadOperation();
+    boolean newReadOperation(CompletionListener<ReadOperation> listener);
 }
