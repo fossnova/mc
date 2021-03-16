@@ -62,12 +62,4 @@ public interface ServiceController {
      * @return failure reason if any.
      */
     Throwable reason();
-
-    /**
-     * Returns value associaged with this controller of given name.
-     * @param name name of the value associated with this controller
-     * @param <T> value instance
-     * @return value instance
-     */
-    <T> T getValue(String name);
 }
