@@ -1,5 +1,6 @@
 package org.fossnova.mc;
 
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 public interface ContainerController {
@@ -42,6 +43,8 @@ public interface ContainerController {
      */
     boolean isTerminated();
 
+    boolean shutdown(); // synchronous blocking variant
+
     /**
      * Initiates an orderly shutdown in which previously submitted operations are executed,
      * but no new operations will be accepted. Invocation has no additional effect if already shut down.
@@ -49,7 +52,7 @@ public interface ContainerController {
      * @param containerListener completion listener for container shut down.
      * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
-    boolean shutdown(ContainerListener containerListener);
+    boolean shutdown(ContainerListener containerListener); // asynchronous non-blocking variant
 
     /**
      * Initiates an orderly shutdown in which previously submitted operations are executed,
@@ -61,5 +64,7 @@ public interface ContainerController {
      * @return <code>true</code> if shutdown request was accepted, <code>false</code> otherwise
      */
     boolean shutdown(long timeout, TimeUnit unit, ContainerListener containerListener);
+
+    Collection<ServiceController> getControllers();
 
 }

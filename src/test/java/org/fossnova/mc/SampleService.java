@@ -1,8 +1,5 @@
 package org.fossnova.mc;
 
-@Provides({SampleService.p1, SampleService.p2})
-@Requires({SampleService.r1, SampleService.r2})
-@Mode(ServiceMode.LAZY) // default mode is active if not specified
 public final class SampleService implements Service {
 
     public static final String p1 = "p1";

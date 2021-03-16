@@ -55,7 +55,7 @@ public interface ServiceController {
      * Gets all dependency value names that are not available.
      * @return dependency value names that are not available.
      */
-    Collection<String> missing();
+    Collection<String> misses();
 
     /**
      * Returns failure reason if any.
@@ -64,8 +64,8 @@ public interface ServiceController {
     Throwable reason();
 
     /**
-     * Returns value associaged with given name.
-     * @param name name of the value
+     * Returns value associaged with this controller of given name.
+     * @param name name of the value associated with this controller
      * @param <T> value instance
      * @return value instance
      */

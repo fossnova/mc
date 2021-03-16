@@ -1,7 +1,7 @@
 package org.fossnova.mc;
 
 public interface WriteOperation extends Operation {
-    ServiceController addService(Class<? extends Service> clazz);
+    ServiceBuilder addService();
     void removeService(ServiceController controller);
     void finish(CompletionListener<WriteOperation> op);
 }

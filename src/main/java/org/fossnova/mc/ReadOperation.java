@@ -1,8 +1,12 @@
 package org.fossnova.mc;
 
-import java.util.Collection;
-
 public interface ReadOperation extends Operation {
-    Collection<ServiceController> getControllers();
+    /**
+     * Returns value associaged with given property name inside container.
+     * @param name name of the value
+     * @param <T> value instance
+     * @return value instance
+     */
+    <T> T getValue(String name);
     void finish(CompletionListener<ReadOperation> op);
 }
