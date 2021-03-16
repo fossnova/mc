@@ -24,7 +24,7 @@ package org.fossnova.mc;
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class CycleDetectedException extends ServiceException {
+public final class CycleDetectedException extends RuntimeException {
     private static final long serialVersionUID = 1L;
     private CycleDetectedException() {}
 }
