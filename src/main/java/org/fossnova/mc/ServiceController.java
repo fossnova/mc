@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -22,9 +22,17 @@ package org.fossnova.mc;
 import java.util.Collection;
 
 /**
- * Service controller is associated with every service installed into service container.
- * It can be used to remove service from service container
+ * Service controller is associated with every service that was successfully installed into the service container.
+ * It can be used to remove service from the service container
  * or to query information about associated service.
+ * Its {@link #missing()}, {@link #state()} and {@link #reason()} methods should be
+ * called inside block of code guarded by {@link ContainerHoldHandle} handle.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this interface are thread safe.
+ * </p>
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface ServiceController {
     /**
@@ -55,7 +63,7 @@ public interface ServiceController {
      * Gets all dependency value names that are not available.
      * @return dependency value names that are not available.
      */
-    Collection<String> misses();
+    Collection<String> missing();
 
     /**
      * Returns failure reason if any.

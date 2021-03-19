@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -20,10 +20,23 @@
 package org.fossnova.mc;
 
 /**
- * A container shutdown completion listener.
+ * Container hold handle blocks service container to install new or remove existing services or to shutdown.
+ * It is useful if user code needs to inspect service container internals such as service controller states.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this interface are thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public interface ContainerListener {
-    void shutdownComplete(Container container);
+public interface ContainerHoldHandle {
+    /**
+     * Indicates whether this hold handle have been released.
+     * @return <code>true</code> if this hold handle have been released, <code>false</code> otherwise
+     */
+    boolean isReleased();
+    /**
+     * Releases this hold handle to allow service container to continue in its operations.
+     */
+    void release();
 }

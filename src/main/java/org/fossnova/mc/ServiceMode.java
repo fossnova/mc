@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -21,6 +21,10 @@ package org.fossnova.mc;
 
 /**
  * Service modes.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this enum are thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,12 +19,31 @@
  */
 package org.fossnova.mc;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * Thrown when service installation attempt would introduce values dependency cycle in the service container.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this exception are thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public final class CycleDetectedException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    private CycleDetectedException() {}
+    private final Collection<String> cycle;
+
+    private CycleDetectedException(final Collection<String> cycle) {
+        this.cycle = Collections.unmodifiableCollection(cycle);
+    }
+
+    /**
+     * Gets value names forming dependency cycle of service installation attempt.
+     * @return values cycle
+     */
+    public Collection<String> getCycle() {
+        return cycle;
+    }
 }

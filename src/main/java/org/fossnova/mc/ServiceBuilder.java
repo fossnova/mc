@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,10 +19,66 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Service builder is used for configuring and installing services into the service container.
+ * Every service must <code>provide</code> at least one value.
+ * Service may <code>require</code> values provided by other services.
+ * Default service mode is {@link ServiceMode#ACTIVE} if not configured otherwise.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this interface cannot be used by multiple threads.
+ * Only thread that requested the service builder is allowed to use it.
+ * Any attempt to violate this will result in concurrency exception.
+ * </p>
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public interface ServiceBuilder {
-    ServiceBuilder provides(String... valueNames);
-    ServiceBuilder requires(String... valueNames);
-    ServiceBuilder setMode(ServiceMode mode);
-    ServiceBuilder setInstance(Service service);
-    ServiceController install() throws CycleDetectedException, DuplicityDetectedException;
+    /**
+     * Specifies value names provided by the service.
+     * @param values names of provided values
+     * @return this builder instance
+     * @throws IllegalArgumentException if either <code>null</code> value name was provided or identical value name
+     * was specified via {@link #requires(String...)} method
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ServiceBuilder provides(String... values);
+    /**
+     * Specifies value names required by the service.
+     * @param values names of required values
+     * @return this builder instance
+     * @throws IllegalArgumentException if either <code>null</code> value name was provided or identical value name
+     * was specified via {@link #provides(String...)} method
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ServiceBuilder requires(String... values);
+
+    /**
+     * Sets service mode.
+     * @param mode service mode
+     * @return this builder instance
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ServiceBuilder mode(ServiceMode mode);
+    /**
+     * Sets service instance.
+     * @param service service instance
+     * @return this builder instance
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ServiceBuilder instance(Service service);
+    /**
+     * Installs service into the service container.
+     * @return service controller if installation was successfull
+     * @throws IllegalStateException if called multiple times or if container have been shut down
+     * @throws IllegalArgumentException if either service instance or provided value was not configured
+     * @throws CycleDetectedException if service installation would introduce cycle in values dependency chain
+     * @throws DuplicateDetectedException if service installation would introduce duplicit value
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ServiceController install();
 }

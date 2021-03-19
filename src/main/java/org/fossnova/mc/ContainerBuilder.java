@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,36 +19,76 @@
  */
 package org.fossnova.mc;
 
+import java.util.concurrent.TimeUnit;
+
 /***
- * Service container builder.
+ * Container builder is used for configuring and creating new service containers.
+ * Default auto shutdown mode is <code>true</code> if not configured otherwise.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this interface cannot be used by multiple threads.
+ * Only thread that requested the container builder is allowed to use it.
+ * Any attempt to violate this will result in concurrency exception.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface ContainerBuilder {
     /**
      * Sets container name.
-     * @param name container name
-     * @return this builder
+     * @param containerName container name
+     * @return this builder instance
+     * @throws IllegalArgumentException if container name is <code>null</code>
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
      */
-    ContainerBuilder setName(final String name);
+    ContainerBuilder name(String containerName);
 
     /**
-     * Specifies if service container will automatically shut down on VM exit.
+     * Specifies if service container should automatically shut down on VM exit.
      * @param autoShutdown if true container will shutdown on VM exit
-     * @return this builder
+     * @return this builder instance
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
      */
-    ContainerBuilder setAutoShutdown(final boolean autoShutdown);
+    ContainerBuilder autoShutdown(boolean autoShutdown);
 
     /**
-     * The number of service container internal worker threads (must be greater than zero)
-     * @param threadsCount work threads count
-     * @return this builder
+     * Sets the core number of container threads.
+     * @param corePoolSize core threads pool size
+     * @return this builder instance
+     * @throws IllegalArgumentException if <code>corePoolSize</code> is less than zero
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
      */
-    ContainerBuilder setThreadsCount(final int threadsCount);
+    ContainerBuilder corePoolSize(int corePoolSize);
 
     /**
-     * Creates new service container using given configuration.
-     * @return new service container controller instance
+     * Sets the time limit for which container threads may remain idle before being terminated.
+     * @param time the time to wait
+     * @param unit the time unit of the time argument
+     * @return this builder instance
+     * @throws IllegalArgumentException if time is less than zero or time unit is <code>null</code>
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
      */
-    ContainerController finish();
+    ContainerBuilder keepAliveTime(long time, TimeUnit unit);
+
+    /**
+     * Sets the maximum allowed number of container threads.
+     * @param maximumPoolSize maximum threads pool size
+     * @return this builder instance
+     * @throws IllegalArgumentException if <code>maximumPoolSize</code> is less than or equal to zero
+     * @throws IllegalStateException if called after {@link #install()} method
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ContainerBuilder maximumPoolSize(int maximumPoolSize);
+
+    /**
+     * Creates new service container.
+     * @return container controller
+     * @throws IllegalArgumentException if <code>maximumPoolSize</code> is less than <code>corePoolSize</code>
+     * @throws java.util.ConcurrentModificationException if used by multiple threads
+     */
+    ContainerController install();
 }

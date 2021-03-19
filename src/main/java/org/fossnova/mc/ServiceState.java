@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,9 +19,30 @@
  */
 package org.fossnova.mc;
 
+/**
+ * Service states.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this enum are thread safe.
+ * </p>
+ *
+ * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
+ */
 public enum ServiceState {
+    /**
+     * Service was removed from the service container.
+     */
     REMOVED,
+    /**
+     * Service is down either because it is not demanded or it has unsatisfied dependencies.
+     */
     DOWN,
+    /**
+     * Service failed to start for some reason.
+     */
     FAILED,
+    /**
+     * Service is up and running.
+     */
     UP
 }

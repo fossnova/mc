@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,15 +19,36 @@
  */
 package org.fossnova.mc;
 
+import java.util.concurrent.TimeUnit;
 
 /**
- * Service container.
+ * Service container is providing methods for installing and removing services.
+ * It also provides method to block itself allowing user code to inspect container internals.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this interface are thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public interface Container {
-    WriteOperation newWriteOperation();
-    boolean newWriteOperation(CompletionListener<WriteOperation> listener);
-    ReadOperation newReadOperation();
-    boolean newReadOperation(CompletionListener<ReadOperation> listener);
+    /**
+     * Adds service to the service container.
+     * @return new service builder instance
+     */
+    ServiceBuilder addService();
+    /**
+     * Removes service from the service container.
+     * @param controller controller of service to be removed
+     * @throws IllegalStateException if container have been shutdown
+     */
+    void removeService(ServiceController controller);
+    /**
+     * Wait for the service container to complete all its operations and then block it.
+     * @param timeout to wait for this request completion
+     * @param unit the time unit of the time argument
+     * @return hold handle of the container
+     * @throws InterruptedException if interrupted while waiting
+     */
+    ContainerHoldHandle acquireHoldHandle(long timeout, TimeUnit unit) throws InterruptedException;
 }

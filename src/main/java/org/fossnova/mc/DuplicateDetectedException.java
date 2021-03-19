@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -19,12 +19,31 @@
  */
 package org.fossnova.mc;
 
+import java.util.Collection;
+import java.util.Collections;
+
 /**
  * Thrown when service installation attempt would introduce duplicate value name in the service container.
+ * <p>
+ * <B>Thread Safety:</B>
+ * Instances of this exception are thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
-public final class DuplicityDetectedException extends RuntimeException {
+public final class DuplicateDetectedException extends RuntimeException {
     private static final long serialVersionUID = 1L;
-    private DuplicityDetectedException() {}
+    private final Collection<String> duplicates;
+
+    private DuplicateDetectedException(final Collection<String> duplicates) {
+        this.duplicates = Collections.unmodifiableCollection(duplicates);
+    }
+
+    /**
+     * Gets value names detected as duplicates of service installation attempt.
+     * @return detected duplicates
+     */
+    public Collection<String> getDuplicates() {
+        return duplicates;
+    }
 }

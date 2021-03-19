@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012-2019, FOSS Nova Software Foundation (FNSF),
+ * Copyright (c) 2012-2021, FOSS Nova Software Foundation (FNSF),
  * and individual contributors as indicated by the @author tags.
  *
  * This is free software; you can redistribute it and/or modify it
@@ -21,11 +21,14 @@ package org.fossnova.mc;
 
 /**
  * Factory for service containers.
+ * <p>
+ * <B>Thread Safety:</B>
+ * This factory is thread safe.
+ * </p>
  *
  * @author <a href="mailto:ropalka@redhat.com">Richard Opalka</a>
  */
 public final class ContainerFactory {
-
     private ContainerFactory() {
         // forbidden instantiation
     }
@@ -35,7 +38,6 @@ public final class ContainerFactory {
      * @return container builder
      */
     public static ContainerBuilder newContainer() {
-        return null; // TODO: implement
+        throw new UnsupportedOperationException();
     }
-
 }
