@@ -27,7 +27,7 @@
   <name>FOSS Nova Micro Container</name>
   <groupId>org.fossnova</groupId>
   <artifactId>fossnova-mc</artifactId>
-  <version>1.0.0.Beta1-SNAPSHOT</version>
+  <version>1.0.0.Beta1</version>
   <url>http://fossnova.org/mc</url>
 
   <parent>
