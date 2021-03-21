@@ -53,8 +53,8 @@ public interface StartContext extends Context {
      * @param name dependency value name
      * @param <V> dependency value type
      * @return dependency value
-     * @throws IllegalArgumentException on an attempt to retrieve value not configured via
-     * {@link ServiceBuilder#requires(String...)} method
+     * @throws IllegalArgumentException if method parameter is null or on an attempt to retrieve value not configured
+     * via {@link ServiceBuilder#requires(String...)} method
      * @throws IllegalStateException if called after either {@link #complete()} or {@link #fail(Throwable)} method or
      * if this context is not valid anymore
      */
@@ -66,8 +66,8 @@ public interface StartContext extends Context {
      * @param name provided value name
      * @param value provided value
      * @param <V> provided value type
-     * @throws IllegalArgumentException on an attempt to provide value not configured via
-     * {@link ServiceBuilder#provides(String...)} method
+     * @throws IllegalArgumentException if any method paramter is null or on an attempt to provide value not configured
+     * via {@link ServiceBuilder#provides(String...)} method
      * @throws IllegalStateException if called after either {@link #complete()} or {@link #fail(Throwable)} method or
      * if this context is not valid anymore
      */
@@ -75,6 +75,7 @@ public interface StartContext extends Context {
     /**
      * Must be called when either synchronous or asynchronous start action failed.
      * @param reason failure reason
+     * @throws IllegalArgumentException if reason is null
      * @throws IllegalStateException if called after {@link #complete()} method or if this method was called
      * multiple times or this context is not valid anymore
      */
