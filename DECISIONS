@@ -1,0 +1,2 @@
+Container methods cannot be invoked from MC worker threads.
+Container runtime state will be exposed via ContainerMX bean (to allow debugging).
